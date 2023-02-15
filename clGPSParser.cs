@@ -192,7 +192,7 @@ namespace TeltonikaGPS
                     {
                         // Value = 0 – Ignition Off, 1 – Ignition On
                         if (gp.ID == "239")
-                            ds.Zuendung = Convert.ToBoolean(gp.Value);
+                            ds.Zuendung = StringToBool(gp.Value);
 
                         if (gp.ID == "78")
                         {
@@ -463,6 +463,34 @@ namespace TeltonikaGPS
                     timeout -= new TimeSpan(DateTime.Now.Ticks - now.Ticks).TotalMilliseconds;
                 }
             }
+        }
+        public static bool StringToBool(string s)
+        {
+            bool result = false;
+
+            if (string.IsNullOrEmpty(s))
+                return result;
+
+            if (s == "0") return false;
+            if (s == "1") return true;
+
+            if (s.Equals("false", StringComparison.OrdinalIgnoreCase)) return false;
+            if (s.Equals("true", StringComparison.OrdinalIgnoreCase)) return true;
+
+            if (s.Equals("nein", StringComparison.OrdinalIgnoreCase)) return false;
+            if (s.Equals("ja", StringComparison.OrdinalIgnoreCase)) return true;
+
+            if (s.Equals("no", StringComparison.OrdinalIgnoreCase)) return false;
+            if (s.Equals("yes", StringComparison.OrdinalIgnoreCase)) return true;
+
+            if (s.Equals("n", StringComparison.OrdinalIgnoreCase)) return false;
+            if (s.Equals("j", StringComparison.OrdinalIgnoreCase)) return true;
+            if (s.Equals("y", StringComparison.OrdinalIgnoreCase)) return true;
+
+            if (!bool.TryParse(s, out result))
+                result = false;
+
+            return result;
         }
 
         private static void AddToProtokoll(string Text)
