@@ -17,6 +17,8 @@ namespace TeltonikaGPS
             txtBoxIP.Text = IpAdresse;
             txtBoxPort.Text = PortGps.ToString();
             clGPSParser.ListBox = this.listBox1;
+
+            this.Protocol.Controls.Add(this.listBox1);
         }
 
         private void FormEinstellungen_Shown(object sender, EventArgs e)
@@ -226,6 +228,11 @@ namespace TeltonikaGPS
         private void button4_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

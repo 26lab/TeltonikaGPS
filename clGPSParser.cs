@@ -65,7 +65,7 @@ namespace TeltonikaGPS
                     DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 
                     ds.TimeStamp = origin.AddMilliseconds(Convert.ToDouble(TimeStamp));
-                    AddToProtokoll("Timestamp: " + ds.TimeStamp.ToString());
+                    AddToProtokoll("Timestamp: " + ds.TimeStamp.AddHours(1).ToString());
 
                     // Priority
                     int Priority = getOneByteByStream(stream, true, clgps);
